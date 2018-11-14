@@ -12,6 +12,8 @@ import android.widget.Toast;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.NavigableMap;
+import java.util.TreeMap;
 
 /*TO-DO:
         1.Remove toast from RATE YOUR DAY button.
@@ -36,27 +38,29 @@ public class MainActivity extends AppCompatActivity  {
     int day = c.get(Calendar.DAY_OF_MONTH);
 
 
-    HashMap<String,String> datesAndvalues = new HashMap<String, String>();
-
+    NavigableMap<String,String> datesAndvalues = new TreeMap<String, String>() {
+    };
 
     public String getToday() {
         return Today;
     }
 
     public void setToday(String today) {
-        Today = today;
+       Today = today;
     }
 
     String Today = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.getTime());
-
+    //String Yesterday = c.add(Calendar.DATE, -1);
 
 
 
     public String getRating() {
+
         return rating;
     }
 
     public void setRating(String rating) {
+
         this.rating = rating;
     }
 
@@ -80,12 +84,10 @@ public class MainActivity extends AppCompatActivity  {
         final ImageView imageView  = (ImageView) findViewById(R.id.imageView);
 
         //Updates textview id"dayRating" as it gets new rating from method "getRating();"
-        dayRating.setText(getRating());
-
 
         //Displays current date at textView 2
         TextView textView2 = (TextView) findViewById(R.id.textView2);
-        textView2.setText(Today);
+        textView2.setText("Today is " + Today);
 
 
         //Methods for buttons.
@@ -94,7 +96,7 @@ public class MainActivity extends AppCompatActivity  {
             public void onClick(View v) {
                 setRating("1");
                 dayRating.setText(getRating());
-                imageView.setImageResource(R.drawable.smiley1);
+                //imageView.setImageResource(R.drawable.smiley1);
 
             }
         });
@@ -104,7 +106,7 @@ public class MainActivity extends AppCompatActivity  {
             public void onClick(View v) {
                 setRating("2");
                 dayRating.setText(getRating());
-                imageView.setImageResource(R.drawable.smiley2);
+                //imageView.setImageResource(R.drawable.smiley2);
             }
         });
 
@@ -113,7 +115,7 @@ public class MainActivity extends AppCompatActivity  {
             public void onClick(View v) {
                 setRating("3");
                 dayRating.setText(getRating());
-                imageView.setImageResource(R.drawable.smiley3);
+               // imageView.setImageResource(R.drawable.smiley3);
             }
         });
 
@@ -122,7 +124,7 @@ public class MainActivity extends AppCompatActivity  {
             public void onClick(View v) {
                 setRating("4");
                 dayRating.setText(getRating());
-                imageView.setImageResource(R.drawable.smiley4);
+               // imageView.setImageResource(R.drawable.smiley4);
             }
         });
 
@@ -131,7 +133,7 @@ public class MainActivity extends AppCompatActivity  {
             public void onClick(View v) {
                 setRating("5");
                 dayRating.setText(getRating());
-                imageView.setImageResource(R.drawable.smiley5);
+               // imageView.setImageResource(R.drawable.smiley5);
             }
         });
 
@@ -140,7 +142,7 @@ public class MainActivity extends AppCompatActivity  {
             public void onClick(View v) {
                 setRating("6");
                 dayRating.setText(getRating());
-                imageView.setImageResource(R.drawable.smiley6);
+              //  imageView.setImageResource(R.drawable.smiley6);
             }
         });
 
@@ -151,8 +153,23 @@ public class MainActivity extends AppCompatActivity  {
             public void onClick(View v) {
                 datesAndvalues.put(getToday(), getRating());
                 Toast.makeText(MainActivity.this, datesAndvalues.entrySet().toString(), Toast.LENGTH_LONG).show();
-            }
-        });
+                if (rating.equals("1")) {
+                    imageView.setImageResource(R.drawable.smiley1);
+                    } else if (rating.equals("2")) {
+                        imageView.setImageResource(R.drawable.smiley2);
+                    } else if (rating.equals("3")) {
+                        imageView.setImageResource(R.drawable.smiley3);
+                    } else if (rating.equals("4")) {
+                        imageView.setImageResource(R.drawable.smiley4);
+                    } else if (rating.equals("5")) {
+                        imageView.setImageResource(R.drawable.smiley5);
+                    } else if (rating.equals("6")) {
+                        imageView.setImageResource(R.drawable.smiley6);
+                    }
+
+            }});
+                                       }}
+
 
 
 
@@ -212,7 +229,7 @@ public class MainActivity extends AppCompatActivity  {
 
 
         });*/
-    }
+
 
 
     /*@Override
@@ -236,56 +253,10 @@ public class MainActivity extends AppCompatActivity  {
 
 
 
-   /* public void buttonOnClick(View view)
-
-{
-    switch(view.getId())
- {
-    case R.id.buttonOne:
-        setRating("1");
-        Toast.makeText(MainActivity.this,
-                "You pressed 1", Toast.LENGTH_LONG).show();
-        break;
-
-    case R.id.buttonTwo:
-        setRating("2");
-        Toast.makeText(MainActivity.this,
-                "You pressed 2", Toast.LENGTH_LONG).show();
-        break;
-
-    case R.id.buttonThree:
-        setRating("3");
-        Toast.makeText(MainActivity.this,
-                "You pressed 3", Toast.LENGTH_LONG).show();
-        break;
-
-    case R.id.buttonFour:
-        setRating("4");
-        Toast.makeText(MainActivity.this,
-                "You pressed 4", Toast.LENGTH_LONG).show();
-        break;
-
-    case R.id.buttonFive:
-        setRating("5");
-        Toast.makeText(MainActivity.this,
-                "You pressed 5", Toast.LENGTH_LONG).show();
-        break;
+   /* */
 
 
 
- }*/
-}
-
-
-
-
-
-    /*TextView selectedTextViewField  = findViewById(R.id.selectedDayRating);
-    Button changeToOne = findViewById(R.id.buttonOne);
-    Button changeToTwo = findViewById(R.id.buttonTwo);
-    Button changeToThree = findViewById(R.id.buttonThree);
-    Button changeToFour = findViewById(R.id.buttonFour);
-    Button changeToFive = findViewById(R.id.buttonFive);*/
 
 
 
